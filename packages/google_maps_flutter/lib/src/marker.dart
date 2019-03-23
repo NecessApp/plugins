@@ -30,7 +30,7 @@ class Marker {
   /// touch events. Add listeners to the owning map controller to track those.
   MarkerOptions get options => _options;
 
-  updateOptions(MarkerOption changes) {
+  updateOptions(MarkerOptions changes) {
     _options = _options.copyWith(changes);
   }
 }

@@ -110,12 +110,12 @@ class GoogleMapController extends ChangeNotifier {
 
       case 'marker#onDrag':
         final String markerId = call.arguments['marker'];
+        final double latitude = call.arguments['latitude'];
+        final double longitude = call.arguments['longitude'];
+        final LatLng latLng = LatLng(latitude, longitude);
         final Marker marker = _markers[markerId];
         if (marker != null) {
-          final double latitude = call.arguments['latitude'];
-          final double longitude = call.arguments['longitude'];
-          final LatLng latLng = LatLng(latitude, longitude);
-          marker.options = marker.updateOptions(MarkerOptions(position: latLng));
+          marker.updateOptions(MarkerOptions(position: latLng));
           onMarkerDrag(marker);
         }
         break;
