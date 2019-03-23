@@ -49,6 +49,7 @@ final class GoogleMapController
         GoogleMap.OnCameraMoveStartedListener,
         GoogleMap.OnInfoWindowClickListener,
         GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnMarkerDragListener,
         GoogleMap.OnPolylineClickListener,
         GoogleMap.OnMapClickListener,
         GoogleMap.OnMapLongClickListener,
@@ -214,6 +215,7 @@ final class GoogleMapController
     googleMap.setOnCameraMoveListener(this);
     googleMap.setOnCameraIdleListener(this);
     googleMap.setOnMarkerClickListener(this);
+    googleMap.setOnMarkerDragListener(this);
     googleMap.setOnPolylineClickListener(this);
     googleMap.setOnMapLongClickListener(this);
     googleMap.setOnMapClickListener(this);
@@ -340,6 +342,22 @@ final class GoogleMapController
     final Map<String, Object> arguments = new HashMap<>(2);
     arguments.put("marker", marker.getId());
     methodChannel.invokeMethod("marker#onTap", arguments);
+  }
+
+  public void onMarkerDrag (Marker marker) {
+    final Map<String, Object> arguments = new HashMap<>(2);
+    arguments.put("marker", marker.getId());
+    methodChannel.invokeMethod("marker#onDrag", arguments);
+  }
+
+  public void onMarkerDragEnd (Marker marker) {
+    final Map<String, Object> arguments = new HashMap<>(2);
+    arguments.put("marker", marker.getId());
+    methodChannel.invokeMethod("marker#onDragEnd", arguments);
+  }
+
+  public void onMarkerDragStart(Marker marker) {
+
   }
 
   @Override
