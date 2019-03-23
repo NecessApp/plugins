@@ -348,7 +348,7 @@ final class GoogleMapController
     final Map<String, Object> arguments = new HashMap<>(2);
     arguments.put("marker", marker.getId());
     arguments.put("latitude", marker.getPosition().latitude);
-    arguments.put("longitude", location.getPosition().longitude);
+    arguments.put("longitude", marker.getPosition().longitude);
     methodChannel.invokeMethod("marker#onDrag", arguments);
   }
 
