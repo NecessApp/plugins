@@ -29,6 +29,10 @@ class Marker {
   /// The returned value does not reflect any changes made to the marker through
   /// touch events. Add listeners to the owning map controller to track those.
   MarkerOptions get options => _options;
+
+  updateOptions(MarkerOption changes) {
+    _options = _options.copyWith(changes);
+  }
 }
 
 dynamic _offsetToJson(Offset offset) {

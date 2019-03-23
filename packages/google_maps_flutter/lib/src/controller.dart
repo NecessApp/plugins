@@ -115,7 +115,7 @@ class GoogleMapController extends ChangeNotifier {
           final double latitude = call.arguments['latitude'];
           final double longitude = call.arguments['longitude'];
           final LatLng latLng = LatLng(latitude, longitude);
-          marker.options = marker.options.copyWith(MarkerOptions(position: latLng));
+          marker.options = marker.updateOptions(MarkerOptions(position: latLng));
           onMarkerDrag(marker);
         }
         break;
