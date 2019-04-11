@@ -67,6 +67,8 @@ class GoogleMapController extends ChangeNotifier {
   final ArgumentCallbacks<Marker> onInfoWindowTapped =
       ArgumentCallbacks<Marker>();
 
+  final ArgumentCallbacks<bool> onCameraMoveStarted = ArgumentCallbacks<bool>();
+
   /// The current set of markers on this map.
   ///
   /// The returned set will be a detached snapshot of the markers collection.
@@ -169,7 +171,11 @@ class GoogleMapController extends ChangeNotifier {
         break;
 
       case 'camera#onMoveStarted':
+        final bool isGesture = call.arguments['isGesture'];
         _isCameraMoving = true;
+        if (isGesture != null) {
+          onCameraMoveStarted(isGesture);
+        }
         notifyListeners();
         break;
       case 'camera#onMove':
